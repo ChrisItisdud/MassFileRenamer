@@ -8,11 +8,10 @@ Config files define the scheme by which files are renamed, as well as the file e
 
 It starts as follows:
 
-``
+```
 (format)(example:$0_$1_$2_$3-$4)
 (ending)(example:pdf)
-
-``
+```
 
 The format describes your names' format. Do not include the file ending here. The ending describes the file ending of files that should be renamed - files that don't contain this are ignored.
 
@@ -22,7 +21,7 @@ Currently, the types "enum"(for a set of possible values), "number"(for numbers)
 
 Declarations look like this:
 
-``
+```
 $1: enum
 test,hey,hello
 $2: number
@@ -33,15 +32,15 @@ $4: string
 
 $5: date
 
-``
+```
 
 Note that an empty line should follow after "string" and "date" as they do not need parameters.
 
 a full config file would look something like this:
 
-``
-(format)(example:$0_$1_$2_$3-$4)
-(ending)(example:pdf)
+```
+$0_$1_$2_$3-$4
+pdf
 $1: enum
 test,hey,hello
 $2: number
@@ -51,7 +50,8 @@ $3: inc
 $4: string
 
 $5: date
-``
+
+```
 
 ## Running the program
 
