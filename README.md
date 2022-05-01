@@ -55,4 +55,8 @@ $5: date
 
 ## Running the program
 
-(As of current, the program is only available as source code - once it isn't, instructions on how to get it running will be here)
+To run the program, simply download the newest version from the "Releases" section, write your config file, use a command line (such as windows' cmd) to navigate to the directory you located the jar file in, then run it using the following command:
+
+``java -jar MassFileRenamer-1.0-SNAPSHOT.jar``
+
+The program will then walk you through the renaming process.
