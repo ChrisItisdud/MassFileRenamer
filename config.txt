@@ -1,0 +1,14 @@
+$1_$2_$3_$4_$5_$6
+pdf
+$1: enum
+ITE,CPTY
+$2: date
+
+$3: number
+220000
+$4: string
+
+$5: string
+
+$6: enum
+TODO,DOING,DONE
