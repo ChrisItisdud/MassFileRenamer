@@ -9,15 +9,18 @@ import java.io.IOException;
 public class RenamableFile {
     private File oldFile;
     private NameFormat format;
+    private String fileEnding;
 
-    public RenamableFile(File oldFile, NameFormat format) {
+    public RenamableFile(File oldFile, NameFormat format, String fileEnding) {
         this.oldFile = oldFile;
         this.format = format;
+        this.fileEnding = fileEnding;
     }
 
     public void rename(String[] params) throws IOException {
-        String result = format.getName(params);
-        File target = new File(oldFile.getParentFile().getName(), result);
+        String result = oldFile.getParentFile().getAbsolutePath() + "\\" + format.getName(params) + "." + fileEnding;
+        File target = new File(result);
+        System.out.println(target.getAbsolutePath());
         if (target.exists()) throw new IOException("file exists");
         FileUtils.moveFile(oldFile, target);
     }

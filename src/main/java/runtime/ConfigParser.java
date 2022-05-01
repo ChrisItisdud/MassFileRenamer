@@ -14,16 +14,19 @@ public class ConfigParser {
 
     public ConfigParser(String fname) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(fname))) {
+            int lineNumber = 1;
             String fmt = br.readLine();
             fileEnding = br.readLine();
+            lineNumber++;
             List<FormatParam> params = new ArrayList<>();
             String line;
             line = br.readLine();
+            lineNumber++;
             int paramIndex = 0;
             while (line != null) {
-                if (!line.startsWith(paramIndex + ": ")) throw new IOException("invalid config file");
+                if (!line.startsWith("$"+paramIndex + ": ")) throw new IOException("invalid config file");
                 String line2 = br.readLine();
-                switch (line.substring(3)) {
+                switch (line.substring(4)) {
                     case "enum":
                         String[] values = line2.split(",");
                         params.add(new EnumParam(values));
@@ -36,19 +39,22 @@ public class ConfigParser {
                         int init = Integer.parseInt(line2);
                         params.add(new IncrementParam(init));
                         break;
-                    case "str":
+                    case "string":
                         params.add(new StringParam());
                         break;
                     case "date":
                         params.add(new DateParam());
                         break;
                     default:
-                        throw new IOException("invalid config file");
+                        throw new IOException("invalid config file: error at line "+lineNumber);
                 }
                 line = br.readLine();
+                lineNumber+=2;
+                paramIndex++;
             }
-            format = new NameFormat((FormatParam[]) params.toArray(), fmt);
+            format = new NameFormat(paramListToArray(params), fmt);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new IOException("illegal config");
         }
     }
@@ -59,5 +65,13 @@ public class ConfigParser {
 
     public NameFormat getFormat() {
         return format;
+    }
+
+    private FormatParam[] paramListToArray(List<FormatParam> params) {
+        FormatParam[] result = new FormatParam[params.size()];
+        for(int i=0;i<result.length;i++) {
+            result[i]=params.get(i);
+        }
+        return result;
     }
 }

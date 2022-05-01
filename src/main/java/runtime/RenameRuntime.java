@@ -36,7 +36,7 @@ public class RenameRuntime {
             return null;
         }
         Desktop.getDesktop().open(files[index]);
-        return new RenamableFile(files[index], format);
+        return new RenamableFile(files[index], format, fileEnding);
     }
 
     private boolean incrementIndex() {
@@ -45,7 +45,6 @@ public class RenameRuntime {
             if (index >= files.length) {
                 return true;
             }
-            if (files[index].getName().equals("config.txt")) continue;
         } while (!files[index].getName().contains(fileEnding));
         return false;
     }

@@ -12,6 +12,8 @@ public class IncrementParam implements FormatParam {
     }
 
     public boolean validate(String param) {
-        return param.equals(String.valueOf(next++));
+        boolean result = param.equals(String.valueOf(next));
+        next++;
+        return result;
     }
 }
