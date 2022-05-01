@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigParser {
-    String fileEnding;
-    NameFormat format;
+    private String fileEnding;
+    private NameFormat format;
 
     public ConfigParser(String fname) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(fname))) {
@@ -51,5 +51,13 @@ public class ConfigParser {
         } catch (Exception e) {
             throw new IOException("illegal config");
         }
+    }
+
+    public String getFileEnding() {
+        return fileEnding;
+    }
+
+    public NameFormat getFormat() {
+        return format;
     }
 }

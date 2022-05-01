@@ -12,11 +12,19 @@ public class RenameRuntime {
     private int index;
     private NameFormat format;
 
-    public RenameRuntime(String fname) {
+    /**
+     * creates a new RenameRuntime
+     * @param fname directory of files to rename
+     * @param configLocation location of config file
+     * @throws IOException if config file is invalid or cannot be found.
+     */
+    public RenameRuntime(String fname, String configLocation) throws IOException {
         File directory = new File(fname);
         this.files = directory.listFiles();
         this.index = -1;
-
+        ConfigParser cfgParser = new ConfigParser(configLocation);
+        format = cfgParser.getFormat();
+        fileEnding = cfgParser.getFileEnding();
     }
 
     /**
@@ -24,7 +32,6 @@ public class RenameRuntime {
      * returns null if end of directory is reached.
      */
     public RenamableFile next() throws IOException {
-        //TODO: limit to files with specific ending
         if (incrementIndex()) {
             return null;
         }
