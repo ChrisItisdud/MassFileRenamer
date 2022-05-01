@@ -18,6 +18,10 @@ public class NameFormat {
         return result;
     }
 
+    public FormatParam[] getParams() {
+       return params;
+    }
+
     @Override
     public String toString() {
         String result = fmt;
@@ -27,7 +31,7 @@ public class NameFormat {
         return result;
     }
 
-    private String getParamTypeName(FormatParam param) {
+    public String getParamTypeName(FormatParam param) {
         if (param.getClass() == DateParam.class) {
             return "Date";
         } else if (param.getClass() == EnumParam.class) {

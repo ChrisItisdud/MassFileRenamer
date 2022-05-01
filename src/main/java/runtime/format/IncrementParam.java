@@ -10,4 +10,8 @@ public class IncrementParam implements FormatParam {
     public String[] getOptions() {
         return new String[]{String.valueOf(next)};
     }
+
+    public boolean validate(String param) {
+        return param.equals(String.valueOf(next++));
+    }
 }

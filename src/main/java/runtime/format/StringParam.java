@@ -7,4 +7,8 @@ public class StringParam implements FormatParam {
     public String[] getOptions() {
         return new String[0];
     }
+
+    public boolean validate(String value) {
+        return true;
+    }
 }

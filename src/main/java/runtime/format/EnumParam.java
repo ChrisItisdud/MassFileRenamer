@@ -10,4 +10,11 @@ public class EnumParam implements FormatParam {
     public String[] getOptions() {
         return options;
     }
+
+    public boolean validate(String value) {
+        for(String s : options) {
+            if(s.equals(value)) return true;
+        }
+        return false;
+    }
 }
