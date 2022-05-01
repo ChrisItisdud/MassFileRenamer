@@ -9,10 +9,11 @@ public class NameFormat {
         this.fmt = fmt;
     }
 
-    public String getName(FormatParam[] valueParams){
+    //TODO: ADD VALIDATION
+    public String getName(String[] valueParams){
         String result = fmt;
         for(int i=0;i<valueParams.length;i++) {
-            result = result.replaceAll("\\$"+i, valueParams[i].getValue());
+            result = result.replaceAll("\\$"+i, valueParams[i]);
         }
         return result;
     }

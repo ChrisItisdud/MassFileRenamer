@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class RenameRuntime {
     private String fileEnding;
-    private File[] files;
+    private final File[] files;
     private int index;
     private NameFormat format;
 
@@ -20,23 +20,30 @@ public class RenameRuntime {
     }
 
     /**
-     returns a RenamableFile that will allow to rename the next file.
-     returns null if end of directory is reached.
+     * returns a RenamableFile that will allow to rename the next file.
+     * returns null if end of directory is reached.
      */
     public RenamableFile next() throws IOException {
         //TODO: limit to files with specific ending
-        do {
-            index++;
-            if (index >= files.length) {
-                return null;
-            }
-            if (files[index].getName().equals("config.txt")) continue;
-        } while(!files[index].getName().contains(fileEnding));
+        if (incrementIndex()) {
+            return null;
+        }
         Desktop.getDesktop().open(files[index]);
         return new RenamableFile(files[index], format);
     }
 
-    public NameFormat getFormat(){
+    private boolean incrementIndex() {
+        do {
+            index++;
+            if (index >= files.length) {
+                return true;
+            }
+            if (files[index].getName().equals("config.txt")) continue;
+        } while (!files[index].getName().contains(fileEnding));
+        return false;
+    }
+
+    public NameFormat getFormat() {
         return format;
     }
 }
