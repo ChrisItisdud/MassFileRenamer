@@ -10,7 +10,7 @@ public class NameFormat {
     }
 
     public String getName(FormatParam[] valueParams){
-        String result = new String(fmt);
+        String result = fmt;
         for(int i=0;i<valueParams.length;i++) {
             result = result.replaceAll("\\$"+i, valueParams[i].getValue());
         }
