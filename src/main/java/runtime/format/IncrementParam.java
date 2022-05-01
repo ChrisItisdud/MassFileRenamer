@@ -1,7 +1,7 @@
 package runtime.format;
 
 public class IncrementParam implements FormatParam {
-    private static int next = -1;
+    private int next;
 
     public IncrementParam(int init) {
         next = init;
