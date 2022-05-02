@@ -1,0 +1,12 @@
+$0_$1_$2_$3-$4
+pdf
+$0: enum
+test,hey,hello
+$1: number
+10
+$2: inc
+0
+$3: string
+
+$4: date
+
